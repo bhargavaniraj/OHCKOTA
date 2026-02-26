@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f6f8;
+        }
+        header {
+            background-color: #0077b6;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            background-color: #023e8a;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #0077b6;
+        }
+        input, select, button {
+            padding: 8px;
+            margin: 5px 0;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #0077b6;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #023e8a;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        footer {
+            background-color: #023e8a;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Occupational Health Centre</h1>
+</header>
+
+<nav>
+    <a href="#patient">Patient Registration</a>
+    <a href="#doctor">Doctor Registration</a>
+    <a href="#appointments">Appointments</a>
+    <a href="#Investigations">Investigations</a>
+</nav>
+
+<main>
+    <!-- Patient Registration -->
+    <section id="patient">
+        <h2>Patient Registration</h2>
+        <form id="patientForm">
+            <input type="text" id="pName" placeholder="Full Name" required>
+            <input type="number" id="pAge" placeholder="Age" required>
+            <select id="pGender" required>
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+            <input type="text" id="pDisease" placeholder="Disease / Symptoms" required>
+            <button type="submit">Register Patient</button>
+        </form>
+        <table id="patientTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Disease</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <!-- Doctor Registration -->
+    <section id="doctor">
+        <h2>Doctor Registration</h2>
+        <form id="doctorForm">
+            <input type="text" id="dName" placeholder="Full Name" required>
+            <input type="text" id="dSpecialization" placeholder="Specialization" required>
+            <input type="text" id="dContact" placeholder="Contact Number" required>
+            <button type="submit">Register Doctor</button>
+        </form>
+        <table id="doctorTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Specialization</th>
+                    <th>Contact</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <!-- Appointments -->
+    <section id="appointments">
+        <h2>Book Appointment</h2>
+        <form id="appointmentForm">
+            <input type="text" id="aPatient" placeholder="Patient Name" required>
+            <input type="text" id="aDoctor" placeholder="Doctor Name" required>
+            <input type="date" id="aDate" required>
+            <button type="submit">Book Appointment</button>
+        </form>
+        <table id="appointmentTable">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Doctor</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Hospital Management System</p>
+</footer>
+
+<script>
+    // Patient Registration
+    document.getElementById('patientForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let name = document.getElementById('pName').value.trim();
+        let age = document.getElementById('pAge').value.trim();
+        let gender = document.getElementById('pGender').value;
+        let disease = document.getElementById('pDisease').value.trim();
+
+        if (!name || !age || !gender || !disease) return alert("Please fill all fields");
+
+        let table = document.getElementById('patientTable').querySelector('tbody');
+        let row = table.insertRow();
+        row.insertCell(0).innerText = name;
+        row.insertCell(1).innerText = age;
+        row.insertCell(2).innerText = gender;
+        row.insertCell(3).innerText = disease;
+
+        this.reset();
+    });
+
+    // Doctor Registration
+    document.getElementById('doctorForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let name = document.getElementById('dName').value.trim();
+        let specialization = document.getElementById('dSpecialization').value.trim();
+        let contact = document.getElementById('dContact').value.trim();
+
+        if (!name || !specialization || !contact) return alert("Please fill all fields");
+
+        let table = document.getElementById('doctorTable').querySelector('tbody');
+        let row = table.insertRow();
+        row.insertCell(0).innerText = name;
+        row.insertCell(1).innerText = specialization;
+        row.insertCell(2).innerText = contact;
+
+        this.reset();
+    });
+
+    // Appointment Booking
+    document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        let patient = document.getElement
